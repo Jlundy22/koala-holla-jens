@@ -41,12 +41,11 @@ function saveKoala( newKoala ){
 
 function markKoalaReady(){
   let koalaIdToUpdate = $(this).closest('tr').data('id');
-
   $.ajax({
     method: 'PUT',
     url: `/koalas/${koalaIdToUpdate}`
   }).then(function(response) {
-    getSongs();
+    getKoalas();
   }).catch(function(error) {
     console.log(error);
   })
