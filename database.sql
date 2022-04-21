@@ -4,7 +4,7 @@ CREATE TABLE "koalas" (
 	"id" SERIAL PRIMARY KEY,
 	"name" VARCHAR (250) NOT NULL,
 	"gender" VARCHAR (100) NOT NULL,
-	"age" VARCHAR (100) NOT NULL,
+	"age" INTEGER ,
   "ready-to-transfer" VARCHAR (100) NOT NULL,
   "notes" VARCHAR (100) NOT NULL
 );
