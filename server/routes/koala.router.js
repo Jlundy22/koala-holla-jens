@@ -18,6 +18,8 @@ pool.on('error', (error) => {
   console.log('Something with postgresql really broke. It broke hard.', error);
 })
 
+let koalas = [];
+
 // DB CONNECTION
 
 
@@ -41,6 +43,16 @@ Router.get('/' , (req, res) => {
 
 
 // POST
+Router.post('/', (req, res) => {
+  console.log('POST /koalas');
+  console.log('\treq.body ==>', req.body);
+  koalas.push(req.body.newKoala);
+  res.sendStatus(201);
+})
+
+
+
+
 
 
 // PUT

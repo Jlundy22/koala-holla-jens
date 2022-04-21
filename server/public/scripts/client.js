@@ -16,16 +16,18 @@ function setupClickListeners() {
     // NOT WORKING YET :(
     // using a test object
     let koalaToSend = {
-      name: 'testName',
-      age: 'testName',
-      gender: 'testName',
-      readyForTransfer: 'testName',
-      notes: 'testName',
+      name: $('#nameIn'),
+      age: $('#ageIn'),
+      gender: $('#genderIn'),
+      readyForTransfer: $('#readyForTransferIn'),
+      notes: $('#notesIn'),
     };
-    // call saveKoala with the new obejct
+    // call saveKoala with the new object
     saveKoala( koalaToSend );
   }); 
 }
+
+
 
 function getKoalas(){
   console.log( 'in getKoalas' );
@@ -58,5 +60,7 @@ function getKoalas(){
 function saveKoala( newKoala ){
   console.log( 'in saveKoala', newKoala );
   // ajax call to server to get koalas
+  
+
  
 }
