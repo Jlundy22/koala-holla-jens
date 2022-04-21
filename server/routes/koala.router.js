@@ -14,11 +14,11 @@ const koalaRouter = express.Router();
 router.put('/:koalaId', (req, res) => {
     let sqlQuery = `
       UPDATE "koalas"
-        SET "rank"=$1
+        SET "ready-to-transfer"=$1
         WHERE "id"=$2;
     `;
     let sqlValues = [
-      req.body.readyForTransfer,
+      true,
       req.params.koalaId
     ]
     pool.query(sqlQuery, sqlValues)

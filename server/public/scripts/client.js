@@ -38,3 +38,16 @@ function saveKoala( newKoala ){
   // ajax call to server to get koalas
  
 }
+
+function markKoalaReady(){
+  let koalaIdToUpdate = $(this).closest('tr').data('id');
+
+  $.ajax({
+    method: 'PUT',
+    url: `/koalas/${koalaIdToUpdate}`
+  }).then(function(response) {
+    getSongs();
+  }).catch(function(error) {
+    console.log(error);
+  })
+}
