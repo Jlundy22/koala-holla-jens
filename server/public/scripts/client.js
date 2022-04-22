@@ -51,28 +51,28 @@ function getKoalas(){
       `);
     }
   }).catch(function(error) {
-    console.log(error);
+    console.log( error);
   })
 
   
 } // end getKoalas
 
-function saveKoala( newKoala ){
-  console.log( 'in saveKoala', newKoala );
-  // ajax call to server to get koalas
+// function saveKoala( newKoala ){
+//   console.log( 'in saveKoala', newKoala );
+//   // ajax call to server to get koalas
   
 
  
-}
+// }
 
-function markKoalaReady(){
-  let koalaIdToUpdate = $(this).closest('tr').data('id');
-  $.ajax({
-    method: 'PUT',
-    url: `/koalas/${koalaIdToUpdate}`
-  }).then(function(response) {
-    getKoalas();
-  }).catch(function(error) {
-    console.log(error);
-  })
-}
+// function markKoalaReady(){
+//   let koalaIdToUpdate = $(this).closest('tr').data('id');
+//   $.ajax({
+//     method: 'PUT',
+//     url: `/koalas/${koalaIdToUpdate}`
+//   }).then(function(response) {
+//     getKoalas();
+//   }).catch(function(error) {
+//     console.log(error);
+//   })
+// }
