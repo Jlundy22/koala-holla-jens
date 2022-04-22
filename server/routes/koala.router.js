@@ -1,4 +1,4 @@
-const { Router } = require('express');
+// const { Router } = require('express'); ~~~~(line 3 is doing the same thing)
 const express = require('express');
 const koalaRouter = express.Router();
 const pg = require('pg');
@@ -6,7 +6,7 @@ const pg = require('pg');
 const Pool = pg.Pool;
 
 const pool = new Pool({
-  database: 'songs',
+  database: 'koalasDb',
   host: 'localhost'
 });
 
@@ -18,13 +18,41 @@ pool.on('error', (error) => {
   console.log('Something with postgresql really broke. It broke hard.', error);
 })
 
-let koalas = [];
 
-// DB CONNECTION
+
+
+// const pool = new Pool({
+//     database: 'koalas', 
+//     host: 'localhost', 
+//     port: 5432, 
+//     max: 10, 
+//     idleTimeoutMillis: 30000
+// });
+
+// pool.on('connect', () => {
+//     console.log('Postgresql connected');
+// });
+
+// pool.on('error', (error) => {
+//     console.log('Error with postgres pool', error)
+// });
+
+// router.get('/', (req, res) => {
+
+
+// });
+
+
+
+
+
+// let koalas = [];
+
+// // DB CONNECTION
 
 
 // GET
-Router.get('/' , (req, res) => {
+koalaRouter.get('/' , (req, res) => {
     console.log('GET /koalas');
     let queryText = `
     SELECT * FROM "koalas"
@@ -33,7 +61,7 @@ Router.get('/' , (req, res) => {
     .then((dbResult) => {
         res.send(dbResult.rows);
     })
-    .catch((deError) => {
+    .catch((dbError) => {
         console.log('error in GET /songs db request:', dbError);
         res.sendStatus(500);
     })
@@ -43,12 +71,12 @@ Router.get('/' , (req, res) => {
 
 
 // POST
-Router.post('/', (req, res) => {
-  console.log('POST /koalas');
-  console.log('\treq.body ==>', req.body);
-  koalas.push(req.body.newKoala);
-  res.sendStatus(201);
-})
+// Router.post('/', (req, res) => {
+//   console.log('POST /koalas');
+//   console.log('\treq.body ==>', req.body);
+//   koalas.push(req.body.newKoala);
+//   res.sendStatus(201);
+// })
 
 
 
@@ -56,14 +84,14 @@ Router.post('/', (req, res) => {
 
 
 // PUT
-router.put('/:koalaId', (req, res) => {
+koalaRouter.put('/:koalaId', (req, res) => {
     let sqlQuery = `
       UPDATE "koalas"
-        SET "ready-to-transfer"=$1
+        SET "readyToTransfer"=$1
         WHERE "id"=$2;
     `;
     let sqlValues = [
-      true,
+      'Y',
       req.params.koalaId
     ]
     pool.query(sqlQuery, sqlValues)

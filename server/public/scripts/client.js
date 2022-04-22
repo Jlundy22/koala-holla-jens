@@ -25,6 +25,7 @@ function setupClickListeners() {
     // call saveKoala with the new object
     saveKoala( koalaToSend );
   }); 
+  $(document).on('click', '.transferButton', markKoalaReady)
 }
 
 
@@ -39,34 +40,34 @@ function getKoalas(){
   }).then(function(response) {
     console.log("GET /songs response", response);
     for (let koala of response) {
+      console.log('koalas?', koala);
       $('#viewKoalas').append(`
-        <tr data-id=${koala.id} data-rank=${koala.ready-to-transfer}>
+        <tr data-id=${koala.id} data-rank=${koala.readyToTransfer}>
                <td>${koala.name}</td>
                <td>${koala.gender}</td>
                <td>${koala.age}</td>
-               <td>${koala.ready-to-transfer}</td>
+               <td>${koala.readyToTransfer}</td>
                <td>${koala.notes}</td>
                <td><button class="transferButton">Ready to Transfer</button></td>
         </tr>
       `);
     }
   }).catch(function(error) {
-    console.log(error);
+    console.log('your GET is effed', error);
   })
 
   
 } // end getKoalas
 
-function saveKoala( newKoala ){
-  console.log( 'in saveKoala', newKoala );
-  // ajax call to server to get koalas
-  
-
- 
-}
+// function saveKoala( newKoala ){
+//   console.log( 'in saveKoala', newKoala );
+//   // ajax call to server to get koalas
+// }
 
 function markKoalaReady(){
+  console.log('ready to transfer button');
   let koalaIdToUpdate = $(this).closest('tr').data('id');
+    console.log('k2u, dood', koalaIdToUpdate);
   $.ajax({
     method: 'PUT',
     url: `/koalas/${koalaIdToUpdate}`
